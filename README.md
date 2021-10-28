@@ -18,3 +18,13 @@ cp unenc.pem /etc/rabbitmq/client/key.pem
 chown -R rabbitmq: /etc/rabbitmq/testca
 chown -R rabbitmq: /etc/rabbitmq/server
 chown -R rabbitmq: /etc/rabbitmq/client
+
+listeners.tcp = none
+
+listeners.ssl.default = 5672
+
+ssl_options.cacertfile = /etc/rabbitmq/testca/cacert.pem
+ssl_options.certfile   = /etc/rabbitmq/server/cert.pem
+ssl_options.keyfile    = /etc/rabbitmq/server/key.pem
+ssl_options.verify     = verify_peer
+ssl_options.fail_if_no_peer_cert = false
