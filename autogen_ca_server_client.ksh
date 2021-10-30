@@ -42,14 +42,14 @@ mkdir ca server client
 # Creating CA certs for self signing RabbitMQ host certs
 
 openssl genrsa -out ca/ca_key.pem 2048
-openssl req -x509 -sha256 -new -nodes -key ca/ca_key.pem -days 3650 -out ca/ca_certificate.pem -subj "/C=SG/L=SH/O=IDEMIA/CN=IDEMIARMQ"
+openssl req -x509 -sha256 -new -nodes -key ca/ca_key.pem -days 3650 -out ca/ca_certificate.pem -subj "/C=SG/L=SH/O=IT/CN=SWATMQ"
 
 # Creating certificate requests for all hosts | Update CN with MQServer fqdn hostnames
 
 openssl genrsa -out server/rabbitmq_key.pem 2048
-openssl req -new -key server/rabbitmq_key.pem -out server/rabbitmq_01.csr -subj "/C=SG/L=SH/O=IDEMIA/CN=$server1"
-openssl req -new -key server/rabbitmq_key.pem -out server/rabbitmq_02.csr -subj "/C=SG/L=SH/O=IDEMIA/CN=$server2"
-openssl req -new -key server/rabbitmq_key.pem -out server/rabbitmq_03.csr -subj "/C=SG/L=SH/O=IDEMIA/CN=$server3"
+openssl req -new -key server/rabbitmq_key.pem -out server/rabbitmq_01.csr -subj "/C=SG/L=SH/O=SWAT/CN=$server1"
+openssl req -new -key server/rabbitmq_key.pem -out server/rabbitmq_02.csr -subj "/C=SG/L=SH/O=SWAT/CN=$server2"
+openssl req -new -key server/rabbitmq_key.pem -out server/rabbitmq_03.csr -subj "/C=SG/L=SH/O=SWAT/CN=$server3"
 
 # Create conf file | Prerequisite for creating self signed RabbitMQ certs
 
@@ -99,7 +99,7 @@ fi
 # Create self signed Client certs
 
 openssl genrsa -out client/client_key.pem 2048
-openssl req -new -key client/client_key.pem -out client/client.csr -subj "/C=SG/L=SH/O=IDEMIA/CN=mqconsumer"
+openssl req -new -key client/client_key.pem -out client/client.csr -subj "/C=SG/L=SH/O=SWAT/CN=mqconsumer"
 
 # Create conf file | Prerequisite for creating self signed Client certs
 
