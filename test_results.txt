@@ -2,4 +2,7 @@
 
 openssl s_client -crlf -connect server:5672 -servername node01.server.com
 
-openssl s_client -connect node01.server.com:5672 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > rmq.jks
+openssl s_client -connect node01.server.com:5672 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > rmq.pem
+
+Create truststore:
+keytool -import -alias rmqcert -file rmq.pem -keystore rmq.jks
