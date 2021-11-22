@@ -1,5 +1,5 @@
 # Distribute CA | Server | Client certs as required for TLS enabled RabbitMQ connections
 
-openssl s_client -crlf -connect node01.innolab.idemia.com:5672 -servername node01.innolab.idemia.com
+openssl s_client -crlf -connect server:5672 -servername node01.server.com
 
-openssl s_client -connect node01.innolab.idemia.com:5672 -cert client_certificate.pem -key client_key.pem -CAfile ca_certificate.pem
+openssl s_client -connect node01.server.com:5672 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > rmq.jks
